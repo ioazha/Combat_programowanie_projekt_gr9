@@ -2,7 +2,7 @@ import pygame
 import math
 import random
 import time
-
+import os
 
 def main():
 
@@ -12,6 +12,17 @@ def main():
     #zegar gry 1 (nie włączać przed fazą alfa)
     # clock= pygame.time.Clock()
 
+    
+    #ikony czołgów
+    czolg1obraz = pygame.image.load('czerwony.png')
+    czolg1 = pygame.transform.rotate(pygame.transform.scale(
+        czolg1obraz, (50,50)), 270)
+
+    czolg22obraz = pygame.image.load('niebieski.png')
+    czolg22 = pygame.transform.rotate(pygame.transform.scale(
+        czolg22obraz, (50,50)), 90)
+    
+    
     #wymiary okna
     szerokosc_okna= 1000
     wysokosc_okna= 720
@@ -64,6 +75,11 @@ def main():
         pygame.draw.rect(screen,(255,0,255),czolg2)
         pygame.draw.rect(screen,(255,0,0),przeszkoda)
 
+        #rysowanie czołgów na ekranie
+        screen.blit(czolg1, (czolg.x, czolg.y))
+        screen.blit(czolg22, (czolg2.x, czolg2.y))
+        
+        
         # !!!RUCH!!! (klasa czołg, def ruch)
         #predkosc ruchu
         speed_x = 1
@@ -73,6 +89,7 @@ def main():
         antyspeed_x= 1
         antyspeed_y= 1
 
+        #ruchy pierwszego czołgu
         if pygame.key.get_pressed()[pygame.K_UP]:
             speed_y*= -1
             czolg.y += speed_y
@@ -90,7 +107,24 @@ def main():
             czolg.x += speed_x
 
 
+        #ruchy drugiego czołgu
+        if pygame.key.get_pressed()[pygame.K_w]:
+            speed_y*= -1
+            czolg2.y += speed_y
 
+        if pygame.key.get_pressed()[pygame.K_s]:
+            speed_y*= 1
+            czolg2.y += speed_y
+
+        if pygame.key.get_pressed()[pygame.K_d]:
+            speed_x*= 1
+            czolg2.x += speed_x
+
+        if pygame.key.get_pressed()[pygame.K_a]:
+            speed_x*= -1
+            czolg2.x += speed_x
+
+        
         #!!!DETEKCJA KOLIZJI!!! (klasa Poziom, def kolizja) (czołg się ślizga)
         #kolizja potrzebuje zabezpiecznia
         tolerancja= 10
@@ -122,6 +156,16 @@ def main():
         if czolg.bottom == wysokosc_okna:
             czolg.y -= speed_y
 
+        if czolg2.right == szerokosc_okna:
+            czolg2.x -= speed_x
+        if czolg2.left == 0:
+            czolg2.x += speed_x *-1
+        if czolg2.top == 0:
+            czolg2.y += speed_y *-1
+        if czolg2.bottom == wysokosc_okna:
+            czolg2.y -= speed_y        
+            
+            
         #!!!STRZELANIE!!! nie chce się odczepic od czołgu
         if pygame.key.get_pressed()[pygame.K_SPACE]:
             strzelanie= True
