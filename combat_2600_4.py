@@ -71,8 +71,8 @@ def main():
 
         #RENDER CZOŁGU I PRZESZKODY
         screen.fill((30,30,30))
-        pygame.draw.rect(screen,(255,255,255),czolg)
-        pygame.draw.rect(screen,(255,0,255),czolg2)
+#        pygame.draw.rect(screen,(255,255,255),czolg)
+#        pygame.draw.rect(screen,(255,0,255),czolg2)
         pygame.draw.rect(screen,(255,0,0),przeszkoda)
 
         #rysowanie czołgów na ekranie
@@ -91,36 +91,52 @@ def main():
 
         #ruchy pierwszego czołgu
         if pygame.key.get_pressed()[pygame.K_UP]:
+            czolg1 = pygame.transform.rotate(
+                pygame.transform.scale(czolg1obraz, (50,50)), 0)
             speed_y*= -1
             czolg.y += speed_y
 
         if pygame.key.get_pressed()[pygame.K_DOWN]:
+            czolg1 = pygame.transform.rotate(
+                pygame.transform.scale(czolg1obraz, (50,50)), 180)
             speed_y*= 1
             czolg.y += speed_y
 
         if pygame.key.get_pressed()[pygame.K_RIGHT]:
+            czolg1 = pygame.transform.rotate(
+                pygame.transform.scale(czolg1obraz, (50,50)), 270)
             speed_x*= 1
             czolg.x += speed_x
 
         if pygame.key.get_pressed()[pygame.K_LEFT]:
+            czolg1 = pygame.transform.rotate(
+                pygame.transform.scale(czolg1obraz, (50,50)), 90)
             speed_x*= -1
             czolg.x += speed_x
 
 
         #ruchy drugiego czołgu
         if pygame.key.get_pressed()[pygame.K_w]:
+            czolg22 = pygame.transform.rotate(
+                pygame.transform.scale(czolg22obraz, (50,50)), 0)
             speed_y*= -1
             czolg2.y += speed_y
 
         if pygame.key.get_pressed()[pygame.K_s]:
+            czolg22 = pygame.transform.rotate(
+                pygame.transform.scale(czolg22obraz, (50,50)), 180)
             speed_y*= 1
             czolg2.y += speed_y
 
         if pygame.key.get_pressed()[pygame.K_d]:
+            czolg22 = pygame.transform.rotate(
+                pygame.transform.scale(czolg22obraz, (50,50)), 270)
             speed_x*= 1
             czolg2.x += speed_x
 
         if pygame.key.get_pressed()[pygame.K_a]:
+            czolg22 = pygame.transform.rotate(
+                pygame.transform.scale(czolg22obraz, (50,50)), 90)
             speed_x*= -1
             czolg2.x += speed_x
 
