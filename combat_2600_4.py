@@ -96,19 +96,19 @@ def main():
             speed_y*= -1
             czolg.y += speed_y
 
-        if pygame.key.get_pressed()[pygame.K_DOWN]:
+        elif pygame.key.get_pressed()[pygame.K_DOWN]:
             czolg1 = pygame.transform.rotate(
                 pygame.transform.scale(czolg1obraz, (50,50)), 180)
             speed_y*= 1
             czolg.y += speed_y
 
-        if pygame.key.get_pressed()[pygame.K_RIGHT]:
+        elif pygame.key.get_pressed()[pygame.K_RIGHT]:
             czolg1 = pygame.transform.rotate(
                 pygame.transform.scale(czolg1obraz, (50,50)), 270)
             speed_x*= 1
             czolg.x += speed_x
 
-        if pygame.key.get_pressed()[pygame.K_LEFT]:
+        elif pygame.key.get_pressed()[pygame.K_LEFT]:
             czolg1 = pygame.transform.rotate(
                 pygame.transform.scale(czolg1obraz, (50,50)), 90)
             speed_x*= -1
@@ -122,19 +122,19 @@ def main():
             speed_y*= -1
             czolg2.y += speed_y
 
-        if pygame.key.get_pressed()[pygame.K_s]:
+        elif pygame.key.get_pressed()[pygame.K_s]:
             czolg22 = pygame.transform.rotate(
                 pygame.transform.scale(czolg22obraz, (50,50)), 180)
             speed_y*= 1
             czolg2.y += speed_y
 
-        if pygame.key.get_pressed()[pygame.K_d]:
+        elif pygame.key.get_pressed()[pygame.K_d]:
             czolg22 = pygame.transform.rotate(
                 pygame.transform.scale(czolg22obraz, (50,50)), 270)
             speed_x*= 1
             czolg2.x += speed_x
 
-        if pygame.key.get_pressed()[pygame.K_a]:
+        elif pygame.key.get_pressed()[pygame.K_a]:
             czolg22 = pygame.transform.rotate(
                 pygame.transform.scale(czolg22obraz, (50,50)), 90)
             speed_x*= -1
