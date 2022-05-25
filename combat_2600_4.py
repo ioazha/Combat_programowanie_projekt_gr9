@@ -185,7 +185,7 @@ def main():
         #!!!STRZELANIE!!! nie chce się odczepic od czołgu
         if pygame.key.get_pressed()[pygame.K_SPACE]:
             strzelanie= True
-            strzal= pygame.Rect(czolg.x, czolg.y, 10,10)
+            strzal= pygame.Rect(czolg.x+50, czolg.y+21, 9,9)
 
         if strzelanie:
             pygame.draw.rect(screen,(0,255,0),strzal)
