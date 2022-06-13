@@ -3,26 +3,30 @@ import math
 import random
 import time
 import os
+pygame.font.init()
+
 
  #PUNKTACJA - wyswietlanie
-        punkty1 = 0
-        font = pygame.font.Font('28dayslater.ttf', 32)
-        textX = 50
-        textY = 10
-        
-        punkt = font.render("Trafiony!", True, (120, 190, 99))
+punkty1 = 0
+font = pygame.font.Font('28dayslater.ttf', 32)
+textX = 50
+textY = 10
 
-        font_k = pygame.font.Font('28dayslater.ttf', 80)
+punkt = font.render("Trafiony!", True, (120, 190, 99))
+
+font_k = pygame.font.Font('28dayslater.ttf', 80)
 
 def tablica_punktow(x,y):
+    global punkty1
     score = font.render("Punkty: " + str(punkty1), True, (0,0,0))
-    screen.blit(score, (x, y)) 
+    screen.blit(score, (x, y))
 
-     
+
 def main():
 
     #start z bazowymi parametrami
     pygame.init()
+
     pygame.mixer.init()
 
     #zegar gry 1 (nie włączać przed fazą alfa)
@@ -33,6 +37,8 @@ def main():
     wysokosc_okna= 600
 
     #tworzenie okna
+    global screen
+    global punkty1
     screen = pygame.display.set_mode((szerokosc_okna, wysokosc_okna))
     ziemia = pygame.image.load('ziemia1.png')
     trawa = pygame.image.load('trawa.jpeg')
@@ -42,7 +48,7 @@ def main():
     trawa4 = pygame.transform.scale(trawa, (20,200))
     trawa5 = pygame.transform.scale(trawa, (40,80))
     # screen.blit(ziemia,(0,0))
-    
+
     #dźwięk
     wybuch = pygame.mixer.Sound(os.path.join('wybuch.mp3'))
     wybuch.set_volume(0.3)
@@ -109,7 +115,7 @@ def main():
         for event in pygame.event.get():
             #stopuje jesli użytkownik zamknął okno
             if event.type == pygame.QUIT:
-                running = False   
+                running = False
 
 
         #zegar gry 2
@@ -507,9 +513,9 @@ def main():
             czolg.y += speed_y *-1
         if czolg.bottom == wysokosc_okna:
             czolg.y -= speed_y
-            
-                  
-        
+
+
+
         #!!!STRZELANIE!!!
         if pygame.key.get_pressed()[pygame.K_SPACE]:
             strzelanie= True
@@ -599,26 +605,26 @@ def main():
                 strzelanie = False
                 licznik_strzelanie = 0
                 pygame.mixer.Sound.play(wybuch)
-                screen.blit(punkt, 60, 60)
+                screen.blit(punkt, (60, 60))
                 punkty1 += 1
-                
+
 
         if licznik_strzelanie >= szerokosc_okna:
             strzelanie = False
             licznik_strzelanie = 0
-        
+
         #koniecGry
         font_k = pygame.font.Font('28dayslater.ttf', 80)
-        
+
         if punkty1==3:
             koniec = font_k.render("KONIEC. /n Wygrałeś!", True, (120, 190, 99))
-            screen.blit(koniec, 300, 400)
+            screen.blit(koniec, (300, 400))
             break
 
 
         #odświeżanie ekranu
         pygame.display.flip()
-  
+
 
 main()
 
